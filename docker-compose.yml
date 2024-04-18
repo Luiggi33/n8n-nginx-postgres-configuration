@@ -24,10 +24,8 @@ services:
       retries: 10
 
   n8n:
-    image: n8nio/n8n:1.4.1
-    build:
-      context: ./n8n/src
-      dockerfile: docker/images/n8n-custom/Dockerfile
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
     ports:
       - "5678:5678"
     environment:
@@ -35,7 +33,7 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=${N8N_PROTOCOL}
       - NODE_ENV=production
-      - WEBHOOK_URL=https://n8n.tulipesque.com/
+      - WEBHOOK_URL=https://n8n.yourdomain.com/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
       - VUE_APP_URL_BASE_API=${VUE_APP_URL_BASE_API}
       - WEBHOOK_TUNNEL_URL=${WEBHOOK_TUNNEL_URL}
